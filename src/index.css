@@ -1,0 +1,96 @@
+.todoItem {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+    height: 40px;
+    width: 300px;
+    border: 1px solid rgba(168, 158, 158, 0.3);
+    border-bottom: none;
+    text-align: center;
+    padding: 10px;
+    transition: 0.4s ease-out, color 0.2s;
+}
+
+.todoItem:last-of-type{
+    border-bottom: 1px solid rgba(168, 158, 158, 0.3);
+}
+
+.todoItem:hover {
+    background-color: rgba(185, 185, 185, 0.2);
+    transition: 0.4s ease-out;
+}
+
+.todoItem.false{
+    text-decoration: line-through;
+    color: rgb(192, 188, 188);
+}
+
+.doneButton {
+    float: left;
+    font-size: 0;  
+    height: 30px;
+    width: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: grey;
+    background-color: white;
+}
+
+.deleteButton {
+    float: right;
+    height: 30px;
+    background-color: white;
+    margin-top: 5px;
+    border: none;
+}
+
+.todoList {
+    box-sizing: border-box; 
+    width: 315px;
+    border-top: 2px solid  rgba(168, 158, 158, 0.8);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.todo-app {
+    margin-top: 200px;
+    margin-left: 400px;
+}
+
+.todo-form {
+    margin-left: 30px;
+}
+
+.todo-form input {
+    box-sizing: border-box;
+    height: 30px;
+    width: 200px;
+    border: none;
+    margin-left: 30px;
+    border: 3px solid rgba(247, 131, 131, 0.4);
+    clear: right;
+}
+
+.todo-form button {
+    box-sizing: border-box;
+    border: none;
+    display: block;
+    margin-top: 10px;
+    margin-left: 30px;
+    width: 200px;
+    height: 23px;
+    background-color: rgba(247, 131, 131, 0.2);
+    transition: 0.5s;
+}
+
+.todo-form button:hover {
+    transform: scale(1.2);
+    transition: 0.5s ease-in-out;
+}
+
+h2 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+    margin-left: 90px;
+    margin-bottom: 10px;
+}
