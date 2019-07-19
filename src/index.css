@@ -1,0 +1,143 @@
+button:focus {
+  outline: none;
+}
+
+.todo-app {
+  display: block;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 10px;
+  width: 500px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.todo-app__headline {
+  display: block;
+  box-sizing: border-box;
+  margin: 10px auto;
+  width: 60%;
+  text-align: center;
+  font-size: 40px;
+}
+
+.todo-list {
+  display: block;
+  box-sizing: border-box;
+  margin: 0px auto;
+  padding: 0px;
+}
+
+.todo-item {
+  display: block;
+  box-sizing: border-box;
+  margin: 0px auto;
+  min-height: 60px;
+  font-size: 25px;
+  padding: 5px;
+  border-bottom: 1px solid grey;
+}
+
+.todo-item__change-is-active-button {
+  display: block;
+  box-sizing: border-box;
+  float: left;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border-style: solid;
+  padding: 3px;
+  margin-top: 6px;
+  transition: 0.3s;
+}
+
+.todo-item__change-is-active-button.done {
+  transition: 0.3s;
+  background-color: rgb(141, 139, 139);
+}
+
+.todo-item__delete-button {
+  display: block;
+  box-sizing: border-box;
+  float: right;
+  border: none;
+  background-color: white;
+  font-size: 20px;
+  margin: 8px;
+  margin-top: 12px;
+}
+
+.todo-item__text {
+  word-wrap: break-word;
+  display: block;
+  transition: 0.3s;
+  margin: 0 auto;
+  box-sizing: border-box;
+  width: 350px;
+  margin-top: 8px;
+}
+
+.todo-item__text.done {
+  transition: 0.3s;
+  color: rgb(199, 199, 199);
+  text-decoration: line-through;
+}
+
+.form {
+  padding: 10px;
+}
+
+.form button {
+  font-size: 15px;
+}
+
+.form__text-input {
+  width: 100%;
+  height: 30px;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.form__add-button {
+  float: right;
+  margin-right: -3px;
+  height: 40px;
+  width: 70px;
+  background-color: white;
+  border-style: solid;
+}
+
+.form__filter-all-button {
+  height: 40px;
+  width: 70px;
+  background-color: white;
+  border-style: solid;
+  border-right: none;
+}
+
+.form__filter-all-button.active {
+  background-color: rgba(140, 140, 140, 0.5);
+}
+
+.form__filter-active-button {
+  height: 40px;
+  width: 70px;
+  background-color: white;
+  border-style: solid;
+  border-left: none;
+  border-right: none;
+}
+
+.form__filter-active-button.active {
+  background-color: rgba(140, 140, 140, 0.5);
+}
+
+.form__filter-done-button {
+  height: 40px;
+  width: 70px;
+  background-color: white;
+  border-style: solid;
+  border-left: none;
+}
+
+.form__filter-done-button.active {
+  background-color: rgba(140, 140, 140, 0.5);
+}
