@@ -1,4 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-config-prettier", "tslint-config-airbnb", "tslint-react"],
-  "rules": {"max-classes-per-file": [true, 3]}
-}
+  "extends": ["tslint-config-airbnb"],
+  "rules": {
+    "quotemark":[true, "single"]
+}}

@@ -1,28 +1,20 @@
-import React, { Component }  from 'react';
+import { Form } from './Form';
+import React from 'react';
 import ReactDom from 'react-dom';
 import './index.css';
-import {TodoList} from './todoList';
+import { TodoList } from './TodoList';
+import { ITodoItem } from './TodoItem';
 
-export interface ItodoItemObject {
-  id: number;
-  text: string;
-  isActive: boolean;
-}
+export type FilterType = 'all' | 'active' | 'done';
 
-interface ItodoAppState {
+export interface ItodoAppState {
   currentText: string;
-  filter: string;
-  toDoArray: ItodoItemObject[];
-}
-
-interface ItodoItem {
-  item: ItodoItemObject;
-  changeIsActive: (id:number) => void;
-  delete: (id:number) => void;
+  filter: FilterType;
+  toDoArray: ITodoItem[];
 }
 
 class TodoApp extends React.Component<{}, ItodoAppState> {
-  private idCounter:number = -1;
+  private idCounter: number = -1;
   constructor(props: object) {
     super(props);
     this.state = {
@@ -39,60 +31,53 @@ class TodoApp extends React.Component<{}, ItodoAppState> {
 
   public render() {
     return (
-        <div className="todo-app">
+      <div className="todo-app">
         <h2>To Do List</h2>
         <TodoList
-          items={this.state.toDoArray}
+          items={this.getFilteredItems()}
           changeIsActive={this.changeIsActive}
           delete={this.deleteTodoItem}
           filter={this.state.filter}
         />
-        <form className="todo-form">
-          <input onChange={this.handleChange} value={this.state.currentText} />
-          <button type="button" onClick={this.addToList}>
-            Add
-          </button>
-          <button type="button" onClick={() => this.setFilter('all')}>
-            Show all
-          </button>
-          <button type="button" onClick={() => this.setFilter('active')}>
-            Show active
-          </button>
-          <button type="button" onClick={() => this.setFilter('done')}>
-            Show done
-          </button>
-        </form>
+        <Form
+          handleChange={this.handleChange}
+          currentText={this.state.currentText}
+          addToList={this.addToList}
+          setFilter={this.setFilter}
+        />
       </div>
     );
   }
 
-  private setFilter(filterName:string) {
+  private getFilteredItems() {
+    const filteredItems = this.state.toDoArray.filter((item) => {
+      return !(
+        (this.state.filter === 'active' && !item.isActive) ||
+        (this.state.filter === 'done' && item.isActive)
+      );
+    });
+    return filteredItems;
+  }
+
+  private setFilter(filterName: FilterType) {
     this.setState({
       filter: filterName,
     });
   }
 
   private idGenerator() {
-    const idCounterOld = this.idCounter;
-    this.idCounter = idCounterOld + 1;
+    this.idCounter = this.idCounter + 1;
     return this.idCounter;
   }
 
-  private deleteTodoItem(id:number) {
-    let deleteItemIndex:number;
-    const newArray = this.state.toDoArray.slice();
-    for (let i = 0; i < this.state.toDoArray.length; i++) {
-      if (this.state.toDoArray[i].id === id) {
-        deleteItemIndex = i;
-        newArray.splice(deleteItemIndex, 1);
-      }
-    }
+  private deleteTodoItem(id: number) {
+    const newArray = this.state.toDoArray.filter((item) => item.id !== id);
     this.setState({
-      toDoArray: newArray,
+      toDoArray: newArray,  
     });
   }
 
-  private changeIsActive(id:number) {
+  private changeIsActive(id: number) {
     const newArray = this.state.toDoArray.map((item) => {
       if (item.id === id) {
         item.isActive = !item.isActive;
@@ -104,45 +89,28 @@ class TodoApp extends React.Component<{}, ItodoAppState> {
     });
   }
 
-  private handleChange(event:any) {
+  private handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     this.setState({
       currentText: event.target.value,
     });
   }
 
   private addToList() {
-    const lastArray = this.state.toDoArray.slice();
-    lastArray.push({
-      id: this.idGenerator(),
-      isActive: true,
-      text: this.state.currentText,
-    });
-    this.setState({
-      currentText: '',
-      toDoArray: lastArray,
-    });
+    if (this.state.currentText.trim()) {
+      const newArray = [
+        ...this.state.toDoArray,
+        {
+          id: this.idGenerator(),
+          isActive: true,
+          text: this.state.currentText.trim(),
+        },
+      ];
+      this.setState({
+        currentText: '',
+        toDoArray: newArray,
+      });
+    }
   }
 }
 
-function TodoItem(props:ItodoItem) {
-  return (
-    <div>
-      <button
-        className="doneButton"
-        onClick={() => props.changeIsActive(props.item.id)}
-      >
-        Done
-      </button>
-      <button
-        className="deleteButton"
-        onClick={() => props.delete(props.item.id)}
-      >
-        X
-      </button>
-      <div className={`todoItem ${props.item.isActive}`}>{props.item.text}</div>
-    </div>
-  );
-}
-
 ReactDom.render(<TodoApp />, document.getElementById('root'));
-export { TodoItem };

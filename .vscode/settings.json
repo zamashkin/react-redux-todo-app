@@ -1,0 +1,9 @@
+{
+  "prettier.trailingComma": "all",
+  "prettier.arrowParens": "always",
+  "prettier.eslintIntegration": true,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true
+}
