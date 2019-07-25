@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterType } from '.';
+import { FilterType } from './TodoApp';
 import { ITodoItem, TodoItem } from './TodoItem';
 
 interface TodoListProps {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterType } from '.';
+import { FilterType } from './TodoApp';
 
 interface IFormProps {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
