@@ -17,23 +17,25 @@ function TodoItem(props: TodoItemProps) {
     if (!props.item.isActive) {
       return 'done';
     }
+    return 'active';
   };
 
   return (
-    <div>
+    <div className="todo-item todo-app__todo-item">
       <button
-        className='done-button'
+        className={`todo-item__change-is-active-button
+        todo-app__change-is-active-button ${setClassNameIfDone()}`}
         onClick={() => props.changeIsActive(props.item.id)}
-      >
-        Done
-      </button>
+      />
       <button
-        className='delete-button'
+        className="todo-item__delete-button todo-list__delete-button"
         onClick={() => props.delete(props.item.id)}
       >
         X
       </button>
-      <div className={`todoItem ${setClassNameIfDone()}`}>
+      <div
+        className={`todo-item__text todo-list__text ${setClassNameIfDone()}`}
+      >
         {props.item.text}
       </div>
     </div>

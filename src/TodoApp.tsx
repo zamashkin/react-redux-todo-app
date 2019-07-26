@@ -4,7 +4,13 @@ import './index.css';
 import { TodoList } from './TodoList';
 import { ITodoItem } from './TodoItem';
 import { connect } from 'react-redux';
-import { actions, setFilter, addTodoItem, changeIsActive, deleteTodoItem } from './actions';
+import {
+  actions,
+  setFilter,
+  addTodoItem,
+  changeIsActive,
+  deleteTodoItem,
+} from './actions';
 
 export type FilterType = 'all' | 'active' | 'done';
 
@@ -34,7 +40,7 @@ class TodoApp extends React.Component<ITodoAppProps, ItodoAppState> {
   public render() {
     return (
       <div className="todo-app">
-        <h2>To Do List</h2>
+        <div className='todo-app__headline'>To Do List</div>
         <TodoList
           items={this.getFilteredItems()}
           changeIsActive={this.changeIsActive}
@@ -46,6 +52,7 @@ class TodoApp extends React.Component<ITodoAppProps, ItodoAppState> {
           currentText={this.state.currentText}
           addToList={this.addToList}
           setFilter={this.setFilter}
+          filter={this.props.filter}
         />
       </div>
     );
@@ -54,9 +61,10 @@ class TodoApp extends React.Component<ITodoAppProps, ItodoAppState> {
   private getFilteredItems() {
     const filteredItems = this.props.toDoArray.filter((item) => {
       return !(
-      (this.props.filter === 'active' && !item.isActive) ||
-      (this.props.filter === 'done' && item.isActive)
-      )});
+        (this.props.filter === 'active' && !item.isActive) ||
+        (this.props.filter === 'done' && item.isActive)
+      );
+    });
     return filteredItems;
   }
 
@@ -85,16 +93,15 @@ class TodoApp extends React.Component<ITodoAppProps, ItodoAppState> {
 
   private addToList() {
     if (this.state.currentText.trim()) {
-      const newObject =
-        {
-          id: this.idGenerator(),
-          isActive: true,
-          text: this.state.currentText.trim(),
-        };
+      const newObject = {
+        id: this.idGenerator(),
+        isActive: true,
+        text: this.state.currentText.trim(),
+      };
       this.props.dispatch(addTodoItem(newObject));
       this.setState({
         currentText: '',
-      })
+      });
     }
   }
 }

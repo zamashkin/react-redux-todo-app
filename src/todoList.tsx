@@ -11,7 +11,7 @@ interface TodoListProps {
 
 function TodoList(props: TodoListProps) {
   return (
-    <div className='todoList'>
+    <div className='todo-list todo-app__list'>
       {props.items.map((item: ITodoItem) => {
         return (
           <TodoItem
