@@ -5,7 +5,7 @@ import { TodoList } from './TodoList';
 import { ITodoItem } from './TodoItem';
 import { connect } from 'react-redux';
 import {
-  actions,
+  Actions,
   setFilter,
   addTodoItem,
   changeIsActive,
@@ -17,7 +17,7 @@ export type FilterType = 'all' | 'active' | 'done';
 export interface ITodoAppProps {
   filter: FilterType;
   toDoArray: ITodoItem[];
-  dispatch: Dispatch<actions>;
+  dispatch: Dispatch<Actions>;
 }
 export interface ItodoAppState {
   currentText: string;
@@ -46,6 +46,7 @@ class TodoApp extends React.Component<ITodoAppProps, ItodoAppState> {
           changeIsActive={this.changeIsActive}
           delete={this.deleteTodoItem}
           filter={this.props.filter}
+          className={'todo-app__list'}
         />
         <Form
           handleChange={this.handleChange}
@@ -53,6 +54,7 @@ class TodoApp extends React.Component<ITodoAppProps, ItodoAppState> {
           addToList={this.addToList}
           setFilter={this.setFilter}
           filter={this.props.filter}
+          className={'todo-app__form'}
         />
       </div>
     );

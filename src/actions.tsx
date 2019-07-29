@@ -5,34 +5,34 @@ export enum ActionTypes {
   SET_FILTER = 'setFilter',
   ADD_TODO_ITEM = 'addTodoItem',
   CHANGE_IS_ACTIVE = 'changeIsActive',
-  DELETE_TODO_ITEM = 'deleteTodoItem'
+  DELETE_TODO_ITEM = 'deleteTodoItem',
 }
 
-export type actions = setFilter |  changeIsActive | addTodoItem | deleteTodoItem;
+export type Actions = SetFilter | ChangeIsActive | AddTodoItem | DeleteTodoItem;
 
-interface setFilter {
+interface SetFilter {
   type: typeof ActionTypes.SET_FILTER;
   payload: {
     filter: FilterType;
   };
 }
 
-interface changeIsActive {
+interface ChangeIsActive {
   type: typeof ActionTypes.CHANGE_IS_ACTIVE;
-  payload: number;
+  payload: { id: number };
 }
 
-interface addTodoItem {
+interface AddTodoItem {
   type: typeof ActionTypes.ADD_TODO_ITEM;
   payload: ITodoItem;
 }
 
-interface deleteTodoItem {
+interface DeleteTodoItem {
   type: typeof ActionTypes.DELETE_TODO_ITEM;
-  payload: number;
+  payload: { id: number };
 }
 
-export function setFilter(filter: FilterType): setFilter {
+export function setFilter(filter: FilterType): SetFilter {
   return {
     type: ActionTypes.SET_FILTER,
     payload: {
@@ -41,23 +41,23 @@ export function setFilter(filter: FilterType): setFilter {
   };
 }
 
-export function changeIsActive(id: number):changeIsActive {
+export function changeIsActive(id: number): ChangeIsActive {
   return {
     type: ActionTypes.CHANGE_IS_ACTIVE,
-    payload: id,
+    payload: { id },
   };
 }
 
-export function addTodoItem(item: ITodoItem): addTodoItem {
+export function addTodoItem(item: ITodoItem): AddTodoItem {
   return {
     type: ActionTypes.ADD_TODO_ITEM,
     payload: item,
   };
 }
 
-export function deleteTodoItem(id : number):deleteTodoItem {
+export function deleteTodoItem(id: number): DeleteTodoItem {
   return {
     type: ActionTypes.DELETE_TODO_ITEM,
-    payload: id,
-  }
+    payload: { id },
+  };
 }

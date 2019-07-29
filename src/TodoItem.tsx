@@ -10,10 +10,11 @@ interface TodoItemProps {
   item: ITodoItem;
   changeIsActive: (id: number) => void;
   delete: (id: number) => void;
+  className?: string;
 }
 
 function TodoItem(props: TodoItemProps) {
-  const setClassNameIfDone = () => {
+  const setClassNameActiveOrDone = () => {
     if (!props.item.isActive) {
       return 'done';
     }
@@ -21,20 +22,20 @@ function TodoItem(props: TodoItemProps) {
   };
 
   return (
-    <div className="todo-item todo-app__todo-item">
+    <div className={`todo-item ${props.className}`}>
       <button
         className={`todo-item__change-is-active-button
-        todo-app__change-is-active-button ${setClassNameIfDone()}`}
+         todo-item__change-is-active-button_${setClassNameActiveOrDone()}`}
         onClick={() => props.changeIsActive(props.item.id)}
       />
       <button
-        className="todo-item__delete-button todo-list__delete-button"
+        className="todo-item__delete-button"
         onClick={() => props.delete(props.item.id)}
       >
         X
       </button>
       <div
-        className={`todo-item__text todo-list__text ${setClassNameIfDone()}`}
+        className={`todo-item__text todo-item__text_${setClassNameActiveOrDone()}`}
       >
         {props.item.text}
       </div>

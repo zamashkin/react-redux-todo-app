@@ -7,12 +7,16 @@ interface IFormProps {
   addToList(): void;
   setFilter(filterName: FilterType): void;
   filter: FilterType;
+  className?: string;
 }
 
 class Form extends React.Component<IFormProps, {}> {
   public render() {
     return (
-      <form className="form todo-app__form">
+      <form
+        onSubmit={e => e.preventDefault()}
+        className={`form ${this.props.className}`}
+      >
         <input
           className="form__text-input"
           onChange={this.props.handleChange}
@@ -26,8 +30,8 @@ class Form extends React.Component<IFormProps, {}> {
           Add
         </button>
         <button
-          className={`form__filter-all-button${
-            this.props.filter === 'all' ? ' active' : ''
+          className={`form__filter-button${
+            this.props.filter === 'all' ? ' form__filter-button_active' : ''
           }`}
           type="button"
           onClick={() => this.props.setFilter('all')}
@@ -35,8 +39,8 @@ class Form extends React.Component<IFormProps, {}> {
           All
         </button>
         <button
-          className={`form__filter-active-button${
-            this.props.filter === 'active' ? ' active' : ''
+          className={`form__filter-button${
+            this.props.filter === 'active' ? ' form__filter-button_active' : ''
           }`}
           type="button"
           onClick={() => this.props.setFilter('active')}
@@ -44,8 +48,8 @@ class Form extends React.Component<IFormProps, {}> {
           Active
         </button>
         <button
-          className={`form__filter-done-button${
-            this.props.filter === 'done' ? ' active' : ''
+          className={`form__filter-button${
+            this.props.filter === 'done' ? ' form__filter-button_active' : ''
           }`}
           type="button"
           onClick={() => this.props.setFilter('done')}

@@ -23,7 +23,6 @@ button:focus {
   display: block;
   box-sizing: border-box;
   margin: 0px auto;
-  padding: 0px;
 }
 
 .todo-item {
@@ -33,7 +32,7 @@ button:focus {
   min-height: 60px;
   font-size: 25px;
   padding: 5px;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(131, 130, 130, 0.7);
 }
 
 .todo-item__change-is-active-button {
@@ -49,7 +48,7 @@ button:focus {
   transition: 0.3s;
 }
 
-.todo-item__change-is-active-button.done {
+.todo-item__change-is-active-button_done {
   transition: 0.3s;
   background-color: rgb(141, 139, 139);
 }
@@ -75,7 +74,7 @@ button:focus {
   margin-top: 8px;
 }
 
-.todo-item__text.done {
+.todo-item__text_done {
   transition: 0.3s;
   color: rgb(199, 199, 199);
   text-decoration: line-through;
@@ -83,10 +82,6 @@ button:focus {
 
 .form {
   padding: 10px;
-}
-
-.form button {
-  font-size: 15px;
 }
 
 .form__text-input {
@@ -101,23 +96,13 @@ button:focus {
   margin-right: -3px;
   height: 40px;
   width: 70px;
+  font-size: 15px;
   background-color: white;
   border-style: solid;
 }
 
-.form__filter-all-button {
-  height: 40px;
-  width: 70px;
-  background-color: white;
-  border-style: solid;
-  border-right: none;
-}
-
-.form__filter-all-button.active {
-  background-color: rgba(140, 140, 140, 0.5);
-}
-
-.form__filter-active-button {
+.form__filter-button {
+  font-size: 15px;
   height: 40px;
   width: 70px;
   background-color: white;
@@ -126,18 +111,14 @@ button:focus {
   border-right: none;
 }
 
-.form__filter-active-button.active {
-  background-color: rgba(140, 140, 140, 0.5);
+.form__filter-button:nth-child(3) {
+  border-left: 2px solid buttonface;
 }
 
-.form__filter-done-button {
-  height: 40px;
-  width: 70px;
-  background-color: white;
-  border-style: solid;
-  border-left: none;
+.form__filter-button:last-child {
+  border-right: 2px solid buttonface;
 }
 
-.form__filter-done-button.active {
-  background-color: rgba(140, 140, 140, 0.5);
+.form__filter-button.form__filter-button_active {
+  background-color: rgba(140, 140, 140, 0.3);
 }

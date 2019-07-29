@@ -7,11 +7,12 @@ interface TodoListProps {
   changeIsActive: (id: number) => void;
   delete: (id: number) => void;
   filter: FilterType;
+  className?: string;
 }
 
 function TodoList(props: TodoListProps) {
   return (
-    <div className='todo-list todo-app__list'>
+    <div className={`todo-list ${props.className}`}>
       {props.items.map((item: ITodoItem) => {
         return (
           <TodoItem
@@ -19,6 +20,7 @@ function TodoList(props: TodoListProps) {
             item={item}
             changeIsActive={props.changeIsActive}
             delete={props.delete}
+            className='todo-app__todo-item'
           />
         );
       })}
